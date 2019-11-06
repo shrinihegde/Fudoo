@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% block body %}
+<style>
+    .flex-container{
+        size:80%;
+        margin:auto;
+        justify-content: center;
+    }
+    .store-container{
+        display:inline;
+    }
+    .store-img{
+        height:30vh;
+        width:30vh;
+        border-radius:50%;
+        justify-content:center;
+        margin-left: 17.0rem;;
+    }
+    .img-col{
+        border-right:1.0px dotted black;
+    }
+    .info-col{
+        text-transform: capitalize;
+    }
+    .info-col>h2{
+        padding: 0.2em;
+        margin:0,0.5rem;
+    }
+    .info-col>h4{
+        padding-left:0.5rem;
+        margin:0,0.5rem;
+        text-decoration:underline;
+    }
+    .info-col>p{
+        padding:0.2rem 0.5rem;
+        margin:0.1rem;
+    }
+    .section-menu{
+        width:15rem;
+        margin:1.0rem;
+    }
+    .dropdown-header{
+        font-size:1.5em;
+        text-align: center;
+        margin-bottom:0.7rem;
+    }
+    .btn{
+        margin-bottom:1.0rem;
+    }
+    
+</style>
+
+
+
+<div class="container flex-container ">
+        {% csrf_token %}
+    <div class="container store-container">
+        <div class="row">
+            <div class="col img-col">
+                <img class="store-img" src="{{store.cover.url}}">
+                <br><br>
+            </div>
+            <div class="col info-col">
+                <h2>{{store.name}}</h2>
+                <!-- <br> -->
+                <h4>{{store.number}}</h4>
+                <!-- <br> -->
+                <p>Category: {{store.category}}</p>
+                <!-- <br> -->
+                <p>Store rating: {{store.rating}}/5.0</p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    {% for section in menu %}
+    <div class="section-menu">
+        <h6 class="dropdown-header">{{section.menu}}</h6>
+        {% for item in items %}
+        {% if item.menu.menu == section.menu %}
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{item.name}}</div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Price : {{item.price}}</h5>
+                <label id="quantity">Enter quantity: </label>
+                <input type="number" id="quantity_{{item.id}}"  min="0" step="1">
+                <p class="card-text">Rating : {{item.rating}}</p>
+                <button class="btn btn-primary"  onclick="add_to_cart({{item.id}})">Add to Cart</button>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <a class="btn btn-primary" href="/order_summary/">Book</a>
+    <script src="/static/cart.js"></script>
+</div>
+{% endblock %}

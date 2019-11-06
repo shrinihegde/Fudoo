@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block body %}
+<style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;    
+        }
+        </style>    
+<div class="container">
+    <table style="width: 75%;">
+            <tr>
+                <th colspan="3">
+                <h3>{{foodcourt.name}}</h3>
+                <h3></h3>
+                </th>
+            </tr>
+            <tr>
+                <td>ITEMS</td>
+                <td>QUANTITY</td>
+                <td>PRICE</td>
+            </tr>
+            <tr>
+                <td>ITEMS</td>
+                <td>QUANTITY</td>
+                <td>PRICE</td>
+            </tr>
+                <tr>
+                    <td>ITEMS</td>
+                    <td>QUANTITY</td>
+                    <td>PRICE</td>
+                </tr>
+            <tr>
+                <td>TOTAL</td>
+                <td>Total QUANTITY</td>
+                <td>Total PRICE</td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

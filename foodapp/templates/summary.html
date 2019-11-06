@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block body %}
+<style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;    
+        }
+        </style>    
+<div class="container">
+    <table style="width: 75%; height: 60%;">
+            <tr>
+                <th colspan="3">
+                <h3>{{foodcourt}}</h3>
+                <h4>{{storename}}</h4>
+                </th>
+            </tr>
+            <tr>
+                <td>ITEMS</td>
+                <td>QUANTITY</td>
+                <td>PRICE(per unit)</td>
+            </tr>
+            {% for item in cart %}
+            <tr>
+                <td>{{item.item.name}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.item.price}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>TOTAL PRICE</td>
+                <td></td>
+                <td>{{total_price}}</td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}
